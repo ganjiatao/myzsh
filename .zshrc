@@ -65,27 +65,21 @@ zinit load zdharma/fast-syntax-highlighting
 zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
   zsh-users/zsh-completions
 
-# zinit ice lucid wait='1'
-# zinit load aslingguang/fzf-tab-source
+zinit ice lucid wait='1'
+zinit load aslingguang/fzf-tab-source
 
 # source /home/lingguang/all/code/gitLib/fzf-tab-source/fzf-tab.plugin.zsh
 
 
-# # 加载 powerlevel10k 主题
-# zinit ice depth=1; zinit light romkatv/powerlevel10k
-
-# # zinit light aslingguang/fzf-tab-source
-# # zinit light zsh-users/zsh-completions
-# zinit light zsh-users/zsh-autosuggestions
-# zinit light zdharma/fast-syntax-highlighting
-# # zinit light zsh-users/zsh-syntax-highlighting
-# zinit wait lucid atload"zpcompinit; zpcdreplay" blockf for \
-#   zsh-users/zsh-completions
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.zshrc
+if [[ ! -f ~/.p10k.zsh ]]; then
+  echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.p10k.zsh)" > ~/.p10k.zsh
+fi  
+
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
+# [[ ! -f /opt/miniconda/etc/profile.d/conda.sh ]] || source /opt/miniconda/etc/profile.d/conda.sh
 # 命令别名
 [[ ! -f ~/.config/zsh/alias.zsh ]] || source ~/.config/zsh/alias.zsh 
 
