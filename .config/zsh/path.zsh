@@ -5,7 +5,7 @@ if [[ $(locale 2>/dev/null) == *zh_CN.UTF-8* ]]; then
 fi   
 
 # miniconda3环境变量
-if [[ -f "/opt/miniconda3" ]]; then
+if [[ -d "/opt/miniconda3" ]]; then
   export PATH="/opt/miniconda3/bin:$PATH"  # commented out by conda initialize
   export PATH="$PATH:~/.local/bin"
 
@@ -14,7 +14,7 @@ if [[ -f "/opt/miniconda3" ]]; then
 fi 
 
 # miniconda3环境变量
-if [[ -f "/opt/miniconda" ]]; then
+if [[ -d "/opt/miniconda" ]]; then
   export PATH="/opt/miniconda3/bin:$PATH"  # commented out by conda initialize
   export PATH="$PATH:~/.local/bin"
 
