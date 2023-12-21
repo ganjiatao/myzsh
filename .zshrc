@@ -6,28 +6,28 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 if command -v nvim &>/dev/null; then
-    # install MyVim-starter
-    NVIM_HOME="${NVIM_HOME:-${HOME}/.config/nvim}"
-    if [ ! -d "${NVIM_HOME}" ]; then
-        git clone https://github.com/aslingguang/MyVim-starter.git "${NVIM_HOME}"
-    fi
+  # install MyVim-starter
+  NVIM_HOME="${NVIM_HOME:-${HOME}/.config/nvim}"
+  if [ ! -d "${NVIM_HOME}" ]; then
+    git clone https://github.com/aslingguang/MyVim-starter.git "${NVIM_HOME}"
+  fi
 fi
 
 # install zinit
 ZINIT_HOME="${ZINIT_HOME:-${XDG_DATA_HOME:-${HOME}/.local/share}/zinit}"
 if [ ! -d "${ZINIT_HOME}" ]; then
-    bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+  bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 fi
 
 
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
+  print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+  command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+  command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+    print -P "%F{33} %F{34}Installation successful.%f%b" || \
+    print -P "%F{160} The clone has failed.%f%b"
 fi
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
@@ -37,10 +37,10 @@ autoload -Uz _zinit
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
+  zdharma-continuum/zinit-annex-as-monitor \
+  zdharma-continuum/zinit-annex-bin-gem-node \
+  zdharma-continuum/zinit-annex-patch-dl \
+  zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
 
@@ -78,15 +78,15 @@ if [[ ! -f $HOME/.p10k.zsh ]]; then
 fi  
 
 if [[ ! -d $HOME/.config/zsh ]]; then
-    mkdir -p $HOME/.config/zsh
+  mkdir -p $HOME/.config/zsh
 fi  
 
-if [[ ! -f $HOME/.config/zsh/alias.zsh ]]; then    
-    echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.config/zsh/alias.zsh)" > $HOME/.config/zsh/alias.zsh
+if [[ ! -f $HOME/.config/zsh/alias.zsh ]]; then  
+  echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.config/zsh/alias.zsh)" > $HOME/.config/zsh/alias.zsh
 fi
 
-if [[ ! -f $HOME/.config/zsh/path.zsh ]]; then    
-    echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.config/zsh/path.zsh)" > $HOME/.config/zsh/path.zsh
+if [[ ! -f $HOME/.config/zsh/path.zsh ]]; then  
+  echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.config/zsh/path.zsh)" > $HOME/.config/zsh/path.zsh
 fi
 
 
@@ -108,16 +108,18 @@ update_zsh()
   echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.p10k.zsh)" > $HOME/.p10k.zsh
 
   if [[ ! -d $HOME/.config/zsh ]]; then
-      mkdir -p $HOME/.config/zsh
-  fi    
+    mkdir -p $HOME/.config/zsh
+  fi  
   echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.config/zsh/alias.zsh)" > $HOME/.config/zsh/alias.zsh
   echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.config/zsh/path.zsh)" > $HOME/.config/zsh/path.zsh
 
+  # 如果是安卓设备，更新termux配置
+  if [[ $(uname -r) == *android* ]]; then
+    if [[ ! -d $HOME/.termux ]]; then
+      mkdir -p $HOME/.termux   
+    fi 
+    echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.termux/termux.properties)" > $HOME/.termux/termux.properties
+  fi
 }
 
-if [[ $(uname -r) == *android* ]]; then
-    if [[ ! -d $HOME/.termux ]]; then
-        mkdir -p $HOME/.termux   
-    fi 
-     echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.termux/termux.properties)" > $HOME/.termux/termux.properties
-fi
+
