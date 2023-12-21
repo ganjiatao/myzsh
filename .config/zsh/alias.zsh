@@ -15,13 +15,22 @@ else
   alias lsa='ls -lah'
 fi
 
+if command -v bat &>/dev/null; then
+  alias cat='bat -pp'
+fi
+
 if command -v nvim &>/dev/null; then
   alias vim="nvim"
 fi
-alias ...=../..
-alias ....=../../..
-alias .....=../../../..
-alias ......=../../../../..
+
+if command -v xclip &>/dev/null; then
+  alias copy="xclip -selection c" # 复制内容到剪贴板(屏幕不显示输出)
+  alias cout="tee /dev/tty  | xclip -selection clipboard" # 复制内容到剪贴板(屏幕显示输出)
+fi
+alias ...='cd ../..' 
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
 
 # alias cd="z"
 
@@ -39,6 +48,7 @@ alias lx-music="/opt/appimages/lx-music-desktop.AppImage &>/dev/null &"
 alias cfw="cfw &>/dev/null &"
 alias edge=" /opt/microsoft/msedge/microsoft-edge &>/dev/null &"
 # alias juicebox="java -jar /opt/juicebox.jar"
+alias ai="/usr/sbin/aichat"
 
 proxy_port=2080
 alias proxyw="export https_proxy=http://192.168.0.1:$proxy_port && export http_proxy=http://192.168.0.1:$proxy_port && echo Proxy On"
