@@ -36,4 +36,5 @@ if command -v tldr &>/dev/null; then
   export TLDR_SOURCE_PATHS="$HOME/.tldr_sources"
 fi  
 
-export TMPDIR=/tmp
+
+[[ ! -d /tmp ]] || export TMPDIR=/tmp
