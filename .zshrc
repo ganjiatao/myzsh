@@ -114,7 +114,7 @@ update_zsh()
   echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.config/zsh/path.zsh)" > $HOME/.config/zsh/path.zsh
 
   # 如果是安卓设备，更新termux配置
-  if [[ $(uname -r) == *android* ]]; then
+if [[ $(uname -r) == *android* || $(uname -r) == *qgki* ]]; then
     if [[ ! -d $HOME/.termux ]]; then
       mkdir -p $HOME/.termux   
     fi 
@@ -122,7 +122,7 @@ update_zsh()
   fi
 }
 
-if [[ $(uname -r) == *android* ]]; then
+if [[ $(uname -r) == *android* || $(uname -r) == *qgki* ]]; then
   if [[ ! -d $HOME/.termux ]]; then
       mkdir -p $HOME/.termux   
   fi
