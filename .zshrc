@@ -114,3 +114,10 @@ update_zsh()
   echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.config/zsh/path.zsh)" > $HOME/.config/zsh/path.zsh
 
 }
+
+if [[ $(uname -r) == *android* ]]; then
+    if [[ ! -d $HOME/.termux ]]; then
+        mkdir -p $HOME/.termux   
+    fi 
+     echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.termux/termux.properties)" > $HOME/.termux/termux.properties
+fi
