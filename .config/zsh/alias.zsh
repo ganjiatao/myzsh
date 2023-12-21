@@ -40,23 +40,38 @@ alias ......='cd ../../../../..'
 # 应用快捷方式
 # alias cursor="/opt/Cursor-0.1.6.AppImage &>/dev/null &"
 # alias linuxqq="linuxqq &>/dev/null &"
-# alias dbeaver="dbeaver &>/dev/null &"
+if command -v dbeaver &>/dev/null; then
+  alias dbeaver="dbeaver &>/dev/null &"
+fi
 # alias feishu="/opt/bytedance/feishu/feishu  &>/dev/null &"
 # alias qqmusic="/opt/qqmusic/qqmusic --no-sandbox &>/dev/null &"
-alias lx-music="/opt/appimages/lx-music-desktop.AppImage &>/dev/null &"
+# alias lx-music="/opt/appimages/lx-music-desktop.AppImage &>/dev/null &"
 # alias clash="/opt/clash-for-windows-chinese-git/cfw &>/dev/null &"
-alias cfw="cfw &>/dev/null &"
-alias edge="/opt/microsoft/msedge/microsoft-edge &>/dev/null &"
+
+if command -v cfw &>/dev/null; then
+  alias cfw="cfw &>/dev/null &"
+fi
+
+if command -v microsoft-edge-stable &>/dev/null; then
+  alias edge="microsoft-edge-stable &>/dev/null &"
+fi
 # alias juicebox="java -jar /opt/juicebox.jar"
-alias ai="/usr/sbin/aichat"
+if command -v aichat &>/dev/null; then
+  alias ai="aichat"
+fi
 
 proxy_port=2080
 alias proxyw="export https_proxy=http://192.168.0.1:$proxy_port && export http_proxy=http://192.168.0.1:$proxy_port && echo Proxy On"
 alias proxy-on="export https_proxy=http://127.0.0.1:$proxy_port && export http_proxy=http://127.0.0.1:$proxy_port && echo Proxy On"
 alias proxy-off="unset http_proxy https_proxy && echo Proxy Off"
-alias sqlr="mysql -u root -p"
 
-alias fyb="trans -e bing -b"
+if command -v mysql &>/dev/null; then
+  alias sqlr="mysql -u root -p"
+fi
+
+if command -v trans &>/dev/null; then
+  alias fyb="trans -e bing -b"
+fi
 
 # windows
 if [[ $(uname -r) == *WSL* ]]; then
