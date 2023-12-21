@@ -78,7 +78,7 @@ if [[ ! -f $HOME/.p10k.zsh ]]; then
 fi  
 
 if [[ ! -d $HOME/.config/zsh ]]; then
-    mkdir -p ~/.config/zsh
+    mkdir -p $HOME/.config/zsh
 fi  
 
 if [[ ! -f $HOME/.config/zsh/alias.zsh ]]; then    
@@ -102,3 +102,14 @@ fi
 # zoxide配置(快速目录跳转)
 # eval "$(zoxide init zsh)"
 
+update_zsh()
+{
+  echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.p10k.zsh)" > $HOME/.p10k.zsh
+
+  if [[ ! -d $HOME/.config/zsh ]]; then
+      mkdir -p $HOME/.config/zsh
+  fi    
+  echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.config/zsh/alias.zsh)" > $HOME/.config/zsh/alias.zsh
+  echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.config/zsh/path.zsh)" > $HOME/.config/zsh/path.zsh
+
+}

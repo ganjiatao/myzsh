@@ -81,6 +81,7 @@ fi
 if command -v thefuck &>/dev/null; then
   eval $(thefuck --alias)
 fi  
+
 # 
 # alias fts='/home/lingguang/all/code/gitLib/fzf-tab-source/fts-auto.sh'
 # fzf-tab配置
