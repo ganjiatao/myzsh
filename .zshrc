@@ -46,7 +46,7 @@ zinit light-mode for \
 
 
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 # End of lines configured by zsh-newuser-install
@@ -73,18 +73,31 @@ zinit load aslingguang/fzf-tab-source
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.zshrc
-if [[ ! -f ~/.p10k.zsh ]]; then
-  echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.p10k.zsh)" > ~/.p10k.zsh
+if [[ ! -f $HOME/.p10k.zsh ]]; then
+  echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.p10k.zsh)" > $HOME/.p10k.zsh
 fi  
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if [[ ! -d $HOME/.config/zsh ]]; then
+    mkdir -p ~/.config/zsh
+fi  
+
+if [[ ! -f $HOME/.config/zsh/alias.zsh ]]; then    
+    echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.config/zsh/alias.zsh)" > $HOME/.config/zsh/alias.zsh
+fi
+
+if [[ ! -f $HOME/.config/zsh/path.zsh ]]; then    
+    echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.config/zsh/path.zsh)" > $HOME/.config/zsh/path.zsh
+fi
+
+
+[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
 
 # [[ ! -f /opt/miniconda/etc/profile.d/conda.sh ]] || source /opt/miniconda/etc/profile.d/conda.sh
 # 命令别名
-[[ ! -f ~/.config/zsh/alias.zsh ]] || source ~/.config/zsh/alias.zsh 
+[[ ! -f $HOME/.config/zsh/alias.zsh ]] || source $HOME/.config/zsh/alias.zsh 
 
 # 环境变量
-[[ ! -f ~/.config/zsh/path.zsh ]] || source ~/.config/zsh/path.zsh 
+[[ ! -f $HOME/.config/zsh/path.zsh ]] || source $HOME/.config/zsh/path.zsh 
 
 # zoxide配置(快速目录跳转)
 # eval "$(zoxide init zsh)"

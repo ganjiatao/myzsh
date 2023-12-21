@@ -7,7 +7,7 @@ fi
 # miniconda3环境变量
 if [[ -d "/opt/miniconda3" ]]; then
   export PATH="/opt/miniconda3/bin:$PATH"  # commented out by conda initialize
-  export PATH="$PATH:~/.local/bin"
+  export PATH="$PATH:$HOME/.local/bin"
 
   # 解决clear在anconda环境下无法使用
   export TERMINFO=/usr/share/terminfo 
@@ -16,7 +16,7 @@ fi
 # miniconda3环境变量
 if [[ -d "/opt/miniconda" ]]; then
   export PATH="/opt/miniconda3/bin:$PATH"  # commented out by conda initialize
-  export PATH="$PATH:~/.local/bin"
+  export PATH="$PATH:$HOME/.local/bin"
 
   # 解决clear在anconda环境下无法使用
   export TERMINFO=/usr/share/terminfo 
@@ -30,10 +30,10 @@ fi
 # tldr清华源
 #export TLDR_SOURCE="https://mirror.tuna.tsinghua.edu.cn/tldr-pages/tldr"
 if command -v tldr &>/dev/null; then
-  if [[ ! -f ~/.tldr_sources ]]; then
-    echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.tldr_sources)" > ~/.tldr_sources
+  if [[ ! -f $HOME/.tldr_sources ]]; then
+    echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.tldr_sources)" > $HOME/.tldr_sources
   fi  
-  export TLDR_SOURCE_PATHS="~/.tldr_sources"
+  export TLDR_SOURCE_PATHS="$HOME/.tldr_sources"
 fi  
 
 export TMPDIR=/tmp
