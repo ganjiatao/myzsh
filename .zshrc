@@ -104,6 +104,7 @@ fi
 
 update_zsh()
 {
+  echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.zshrc)" > $HOME/.zshrc
   echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.p10k.zsh)" > $HOME/.p10k.zsh
 
   if [[ ! -d $HOME/.config/zsh ]]; then
