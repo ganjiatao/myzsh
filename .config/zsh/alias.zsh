@@ -7,7 +7,7 @@ if command -v exa &>/dev/null; then
   alias lsa='exa -lbagR --icons'
   alias lst='exa -lTabgh --icons' # 输入lst,将展示类似于tree的树状列表。
 else 
-  alias ls = 'ls --color=auto'
+  alias ls='ls --color=auto'
   alias lst='tree -pCsh'
   alias l='ls -lah'
   alias la='ls -lAh'
@@ -46,7 +46,7 @@ alias ......='cd ../../../../..'
 alias lx-music="/opt/appimages/lx-music-desktop.AppImage &>/dev/null &"
 # alias clash="/opt/clash-for-windows-chinese-git/cfw &>/dev/null &"
 alias cfw="cfw &>/dev/null &"
-alias edge=" /opt/microsoft/msedge/microsoft-edge &>/dev/null &"
+alias edge="/opt/microsoft/msedge/microsoft-edge &>/dev/null &"
 # alias juicebox="java -jar /opt/juicebox.jar"
 alias ai="/usr/sbin/aichat"
 
