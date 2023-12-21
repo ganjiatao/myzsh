@@ -122,4 +122,17 @@ update_zsh()
   fi
 }
 
+if [[ $(uname -r) == *android* ]]; then
+  if [[ ! -d $HOME/.termux ]]; then
+      mkdir -p $HOME/.termux   
+  fi
 
+  if [[ ! -f $HOME/.termux/termux.properties.bak ]]; then
+    mv $HOME/.termux/termux.properties $HOME/.termux/termux.properties.bak
+    echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.termux/termux.properties)" > $HOME/.termux/termux.properties
+  fi
+
+  if command -v sshd &>/dev/null; then
+    sshd
+  fi
+fi
