@@ -56,8 +56,10 @@ SAVEHIST=1000
 # 加载 powerlevel10k 主题
 zinit ice depth=1; zinit load romkatv/powerlevel10k
 
-zinit ice lucid wait='1'
-zinit load skywind3000/z.lua
+if command -v lua &>/dev/null; then
+  zinit ice lucid wait='1'
+  zinit load skywind3000/z.lua
+fi
 # zinit light zsh-users/zsh-completions
 zinit load zsh-users/zsh-autosuggestions
 zinit load zdharma/fast-syntax-highlighting
@@ -65,8 +67,10 @@ zinit load zdharma/fast-syntax-highlighting
 zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
   zsh-users/zsh-completions
 
-zinit ice lucid wait='1'
-zinit load aslingguang/fzf-tab-source
+if command -v fzf &>/dev/null; then
+  zinit ice lucid wait='1'
+  zinit load aslingguang/fzf-tab-source
+fi
 
 # source /home/lingguang/all/code/gitLib/fzf-tab-source/fzf-tab.plugin.zsh
 
