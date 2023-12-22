@@ -56,12 +56,10 @@ SAVEHIST=1000
 # 加载 powerlevel10k 主题
 zinit ice depth=1; zinit load romkatv/powerlevel10k
 
-if command -v lua &>/dev/null; then
-  zinit ice lucid wait='1'
-  zinit load skywind3000/z.lua
-else
-  echo "要想使用z(快速目录跳转),请下载lua"
-fi
+#记录访问目录，输z获取,输`z 目录名称`快速跳转(skywind3000/z.lua,rupa/z,zoxide等都不能直接与fzf-tab配合使用 )
+zinit ice lucid wait='1'
+zinit load agkozak/zsh-z
+
 # zinit light zsh-users/zsh-completions
 zinit load zsh-users/zsh-autosuggestions
 zinit load zdharma/fast-syntax-highlighting
@@ -72,8 +70,6 @@ zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
 if command -v fzf &>/dev/null; then
   zinit ice lucid wait='1'
   zinit load aslingguang/fzf-tab-source
-else
-  echo "要想使用fzf-tab(tab命令补全),请下载fzf(模糊查找工具)"
 fi
 
 # source /home/lingguang/all/code/gitLib/fzf-tab-source/fzf-tab.plugin.zsh
@@ -108,8 +104,6 @@ system_info=$(uname -a)
 # 环境变量
 [[ ! -f $HOME/.config/zsh/path.zsh ]] || source $HOME/.config/zsh/path.zsh 
 
-# zoxide配置(快速目录跳转)
-# eval "$(zoxide init zsh)"
 
 # termux 配置
 if [[ $system_info == *Android* ]]; then

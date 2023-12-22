@@ -38,3 +38,6 @@ fi
 
 
 [[ ! -d /tmp ]] || export TMPDIR=/tmp
+
+# zoxide配置(快速目录跳转)
+# eval "$(z init zsh)"

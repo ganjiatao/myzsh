@@ -73,6 +73,9 @@ if command -v trans &>/dev/null; then
   alias fyb="trans -e bing -b"
 fi
 
+if command -v mount.davfs &>/dev/null; then
+  alias onedrive="mount.davfs https://app.koofr.net/dav/OneDrive/  /mnt/onedrive"
+fi
 
 # windows
 if [[ $system_info == *WSL* ]]; then
