@@ -73,8 +73,9 @@ if command -v trans &>/dev/null; then
   alias fyb="trans -e bing -b"
 fi
 
+
 # windows
-if [[ $(uname -r) == *WSL* ]]; then
+if [[ $system_info == *WSL* ]]; then
   alias addip="powershell.exe -command 'netsh interface ip add address \"vEthernet (WSL)\" 192.168.0.1 255.255.255.0'"
   alias update="sudo reflector --verbose --country 'China' -l 200 -p https --sort rate --save /etc/pacman.d/mirrorlist"
   alias utools="/mnt/c/Users/LINGGUANG/AppData/Local/Programs/utools/uTools.exe"

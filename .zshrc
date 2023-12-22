@@ -89,6 +89,7 @@ if [[ ! -f $HOME/.config/zsh/path.zsh ]]; then
   echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.config/zsh/path.zsh)" > $HOME/.config/zsh/path.zsh
 fi
 
+system_info=$(uname -a)
 
 [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
 
@@ -102,7 +103,26 @@ fi
 # zoxide配置(快速目录跳转)
 # eval "$(zoxide init zsh)"
 
-update_zsh()
+# termux 配置
+if [[ $system_info == *Android* ]]; then
+  if [[ ! -d $HOME/.termux ]]; then
+      mkdir -p $HOME/.termux   
+  fi
+
+  if [[ ! -f $HOME/.termux/termux.properties.bak && -f $HOME/.termux/termux.properties ]]; then
+    mv $HOME/.termux/termux.properties $HOME/.termux/termux.properties.bak
+    echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.termux/termux.properties)" > $HOME/.termux/termux.properties
+  elif [[ ! -f $HOME/.termux/termux.properties ]]; then
+    echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.termux/termux.properties)" > $HOME/.termux/termux.properties
+  fi
+
+  if command -v sshd &>/dev/null; then
+    sshd
+  fi
+fi
+
+
+update_config()
 {
   echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.zshrc)" > $HOME/.zshrc
   echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.p10k.zsh)" > $HOME/.p10k.zsh
@@ -114,7 +134,7 @@ update_zsh()
   echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.config/zsh/path.zsh)" > $HOME/.config/zsh/path.zsh
 
   # 如果是安卓设备，更新termux配置
-  if [[ $(uname -a) == *Android* ]]; then
+  if [[ $system_info == *Android* ]]; then
     if [[ ! -d $HOME/.termux ]]; then
       mkdir -p $HOME/.termux   
     fi 
@@ -122,17 +142,28 @@ update_zsh()
   fi
 }
 
-if [[ $(uname -a) == *Android* ]]; then
-  if [[ ! -d $HOME/.termux ]]; then
-      mkdir -p $HOME/.termux   
+remove_config()
+{
+  if [[ -d $HOME/.config/zsh ]]; then
+    rm -rf $HOME/.config/zsh
   fi
 
-  if [[ ! -f $HOME/.termux/termux.properties.bak ]]; then
-    mv $HOME/.termux/termux.properties $HOME/.termux/termux.properties.bak
-    echo "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/aslingguang/myzsh/HEAD/.termux/termux.properties)" > $HOME/.termux/termux.properties
+  if [[ -f $HOME/.tldr_sources ]]; then
+    rm -f $HOME/.tldr_sources
   fi
 
-  if command -v sshd &>/dev/null; then
-    sshd
+  if [[ -f $HOME/.p10k.zsh ]]; then
+    rm -f $HOME/.p10k.zsh
   fi
-fi
+
+  if [[ -f $HOME/.zshrc ]]; then
+    rm -f $HOME/.zshrc
+  fi
+
+  if [[ $system_info == *Android* ]]; then
+    if [[ -f $HOME/.termux/termux.properties.bak && -f $HOME/.termux/termux.properties ]]; then
+      rm -f $HOME/.termux/termux.properties
+      mv $HOME/.termux/termux.properties.bak $HOME/.termux/termux.properties
+    fi
+  fi
+}
