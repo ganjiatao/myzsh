@@ -59,6 +59,8 @@ zinit ice depth=1; zinit load romkatv/powerlevel10k
 if command -v lua &>/dev/null; then
   zinit ice lucid wait='1'
   zinit load skywind3000/z.lua
+else
+  echo "要想使用z(快速目录跳转),请下载lua"
 fi
 # zinit light zsh-users/zsh-completions
 zinit load zsh-users/zsh-autosuggestions
@@ -70,6 +72,8 @@ zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
 if command -v fzf &>/dev/null; then
   zinit ice lucid wait='1'
   zinit load aslingguang/fzf-tab-source
+else
+  echo "要想使用fzf-tab(tab命令补全),请下载fzf(模糊查找工具)"
 fi
 
 # source /home/lingguang/all/code/gitLib/fzf-tab-source/fzf-tab.plugin.zsh
@@ -170,4 +174,23 @@ remove_config()
       mv $HOME/.termux/termux.properties.bak $HOME/.termux/termux.properties
     fi
   fi
+
+  read -p "是否删除zint插件 (y/n): " choice
+  if [[ $choice == "y" || $choice == "Y" ]]; then
+    rm -rf ${ZINIT_HOME}
+    echo "删除zint插件"
+  else
+    echo "保留zint插件"
+  fi
+
+  read -p "是否删除nvim配置 (y/n): " choice
+  if [[ $choice == "y" || $choice == "Y" ]]; then
+    rm -rf ${NVIM_HOME}
+    rm -rf $HOME/.local/share/nvim
+    rm -rf $HOME/.local/state/nvim
+    echo "删除nvim配置及插件"
+  else
+    echo "保留nvim配置及插件"
+  fi
+  
 }
