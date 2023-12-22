@@ -175,7 +175,8 @@ remove_config()
     fi
   fi
 
-  read -p "是否删除zint插件 (y/n): " choice
+  echo "是否删除zint插件 (y/n): "
+  read choice
   if [[ $choice == "y" || $choice == "Y" ]]; then
     rm -rf ${ZINIT_HOME}
     echo "删除zint插件"
@@ -183,7 +184,8 @@ remove_config()
     echo "保留zint插件"
   fi
 
-  read -p "是否删除nvim配置 (y/n): " choice
+  echo "是否删除nvim配置 (y/n): "
+  read choice
   if [[ $choice == "y" || $choice == "Y" ]]; then
     rm -rf ${NVIM_HOME}
     rm -rf $HOME/.local/share/nvim
